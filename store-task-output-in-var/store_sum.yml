@@ -1,0 +1,29 @@
+- hosts: localhost
+  gather_facts: false
+  vars:
+    a: 5
+    b: 4
+    c: 10
+    d: 13
+
+  tasks:
+
+    - name: Calculate sum of a and b
+      include_tasks: store_sum_task.yml
+      vars:
+        sum_var: sum_of_ab
+        int1: "{{ a }}"
+        int2: "{{ b }}"
+
+    - name: Calculate sum of c and d
+      include_tasks: store_sum_task.yml
+      vars:
+        sum_var: sum_of_cd
+        int1: "{{ c }}"
+        int2: "{{ d }}"
+
+    - debug:
+        msg: "sum_of_ab = {{ sum_of_ab }}, sum_of_cd = {{ sum_of_cd }}"
+
+
+      

@@ -1,0 +1,9 @@
+# Ansible task to store sum of two integers in a variable passed by the main yaml file
+#
+- name: Calculate sum of two integers
+  shell: echo "$(( {{ int1 }} + {{ int2 }} ))"
+  register: sum
+
+- name: Store the sum of integers in {{ sum_var }}
+  set_fact:
+    "{{ sum_var }}": "{{ sum.stdout }}"
